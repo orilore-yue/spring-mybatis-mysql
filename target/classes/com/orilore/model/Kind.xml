@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orilore.mapper.KindMapper">
+	<resultMap type="Kind" id="kindResultMap">
+		<id column="kid" property="id"/>
+		<result column="name" property="name"/>
+		<collection property="goods" ofType="Good">
+			<id column="id" property="id"/>
+			<result column="gname" property="gname"/>
+			<result column="price" property="price"/>
+			<result column="size" property="size"/>
+			<result column="facotry" property="facotry"/>
+			<result column="photo" property="photo"/>
+			<result column="info" property="info"/>
+		</collection>
+	</resultMap>
+	<select id="selectOne" parameterType="int" resultMap="kindResultMap">
+		select a.id kid,a.name,b.* from kind a left join good b on a.id=b.kid where a.id=#{id}
+	</select>
+	<select id="select" resultMap="kindResultMap">
+		select a.id kid,a.name,b.* from kind a left join good b on a.id=b.kid
+	</select>
+	<insert id="insert" parameterType="Kind">
+		insert into kind(name) values(#{name})
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from kind where id=#{id}
+	</delete>
+	<update id="update" parameterType="Kind">
+		update kind set name=#{name} where id=#{id}
+	</update>
+</mapper>
