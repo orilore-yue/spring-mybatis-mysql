@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.orilore.biz.IKindBiz;
+import com.orilore.biz.KindBiz;
 import com.orilore.model.Good;
 import com.orilore.model.Kind;
 
